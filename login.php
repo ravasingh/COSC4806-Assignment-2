@@ -13,10 +13,13 @@ if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
 </head>
 <body>
     <h1>Login</h1>
-        
+
     <?php
     if (isset($_GET['error'])) {
         echo "<p style='color:red'>" . htmlspecialchars($_GET['error']) . "</p>";
+    }
+    if (isset($_GET['success'])) {
+        echo "<p style='color:green'>" . htmlspecialchars($_GET['success']) . "</p>";
     }
     ?>
 
