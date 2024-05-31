@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['authenticated']) && $_SESSION['authenticated'] === true) {
+    header("Location: index.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,5 +20,8 @@
         <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Login">
     </form>
+    <footer>
+        <p>Don't have an account? <a href="register.php">Register here</a></p>
+    </footer>
 </body>
 </html>
