@@ -1,5 +1,4 @@
 <?php
-
 require_once('database.php');
 
 class User {
@@ -18,5 +17,14 @@ class User {
         $statement->bindParam(':password', $password);
         $statement->execute();
     }
+
+    public function user_exists($username) {
+        $db = db_connect();
+        $statement = $db->prepare("SELECT * FROM users WHERE username = :username;");
+        $statement->bindParam(':username', $username);
+        $statement->execute();
+        return $statement->rowCount() > 0;
+    }
 }
 ?>
+
