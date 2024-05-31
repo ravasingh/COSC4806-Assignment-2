@@ -6,19 +6,9 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 $user = new User();
-$users = $user->get_all_users();
-$authenticated = false;
-
-foreach ($users as $existing_user) {
-    if ($existing_user['username'] === $username && password_verify($password, $existing_user['password'])) {
-        $_SESSION['authenticated'] = true;
-        $_SESSION['username'] = $username;
-        $authenticated = true;
-        break;
-    }
-}
-
-if ($authenticated) {
+if ($user->verify_user($username, $password)) {
+    $_SESSION['authenticated'] = true;
+    $_SESSION['username'] = $username;
     header("Location: index.php");
     exit;
 } else {
