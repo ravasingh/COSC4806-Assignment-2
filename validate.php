@@ -19,3 +19,14 @@ foreach ($users as $existing_user) {
         die('Username already exists.');
     }
 }
+
+// Hash the password before storing
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+
+// Create the new user
+$user->create_user($username, $hashed_password);
+
+header("Location: login.php");
+exit;
+?>
